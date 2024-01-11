@@ -1,6 +1,7 @@
 import 'package:adaptive_app/views/widgets/custom_list_view.dart';
 import 'package:flutter/material.dart';
 
+import 'custom_list.dart';
 import 'custom_sliver_grid.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -8,19 +9,29 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(
+    return Padding(
+      padding: const EdgeInsets.symmetric(
         horizontal: 16.0,
       ),
       child: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: SizedBox(
               height: 16,
             ),
           ),
-          CustomSliverGrid(),
-          CustomSliverListView(),
+          SliverToBoxAdapter(
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth > 600) {
+                  return const CustomList();
+                } else {
+                  return const CustomSliverGrid();
+                }
+              },
+            ),
+          ),
+          const CustomSliverListView(),
         ],
       ),
     );
