@@ -6,7 +6,7 @@ class CustomItem2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 65,
+      height: 80,
       margin: const EdgeInsets.only(
         top: 16,
       ),
