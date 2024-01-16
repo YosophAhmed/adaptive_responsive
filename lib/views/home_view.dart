@@ -14,21 +14,23 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       key: scaffoldKey,
       backgroundColor: const Color(0xffDBDBDB),
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            scaffoldKey.currentState!.openDrawer();
-          },
-          icon: const Icon(
-            Icons.menu,
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: Colors.black,
-      ),
+      appBar: MediaQuery.sizeOf(context).width < 900 - 32
+          ? AppBar(
+              leading: IconButton(
+                onPressed: () {
+                  scaffoldKey.currentState!.openDrawer();
+                },
+                icon: const Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                ),
+              ),
+              backgroundColor: Colors.black,
+            )
+          : null,
       drawer: const CustomDrawer(),
       body: const HomeViewBody(),
     );

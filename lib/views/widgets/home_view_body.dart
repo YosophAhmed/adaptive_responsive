@@ -1,3 +1,4 @@
+import 'package:adaptive_app/views/widgets/adaptive_layout.dart';
 import 'package:adaptive_app/views/widgets/desktop_layout.dart';
 import 'package:adaptive_app/views/widgets/tablet_layout.dart';
 import 'package:flutter/material.dart';
@@ -13,16 +14,10 @@ class HomeViewBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 16.0,
       ),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          if (constraints.maxWidth < 600) {
-            return const MobileLayout();
-          } else if (constraints.maxWidth < 900) {
-            return const TabletLayout();
-          } else {
-            return const DesktopLayout();
-          }
-        },
+      child: AdaptiveLayout(
+        mobileLayout: (context) => const MobileLayout(),
+        tabletLayout: (context) => const TabletLayout(),
+        desktopLayout: (context) => const DesktopLayout(),
       ),
     );
   }
